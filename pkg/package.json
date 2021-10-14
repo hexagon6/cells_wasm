@@ -4,7 +4,6 @@
   "files": [
     "cells_wasm_bg.wasm",
     "cells_wasm.js",
-    "cells_wasm_bg.js",
     "cells_wasm.d.ts"
   ],
   "module": "cells_wasm.js",
