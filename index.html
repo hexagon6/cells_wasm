@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>cells_wasm example</title>
+  </head>
+  <body>
+    <pre id="world"></pre>
+    <script type="module">
+      import init, { random_world } from "./pkg/cells_wasm.js";
+      await init();
+      const world = random_world();
+      const w = document.getElementById("world");
+      w.append(JSON.stringify(world, null, 2));
+      console.log(w);
+    </script>
+  </body>
+</html>

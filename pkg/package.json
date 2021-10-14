@@ -1,0 +1,12 @@
+{
+  "name": "cells_wasm",
+  "version": "0.1.0",
+  "files": [
+    "cells_wasm_bg.wasm",
+    "cells_wasm.js",
+    "cells_wasm.d.ts"
+  ],
+  "module": "cells_wasm.js",
+  "types": "cells_wasm.d.ts",
+  "sideEffects": false
+}
