@@ -1,19 +1,12 @@
 use getrandom::getrandom;
-use serde::{Deserialize, Serialize};
 
 use wasm_bindgen::prelude::*;
+mod cellular_automaton;
 
-// x: Position, y: Position, v: State
-#[wasm_bindgen]
-#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
-pub struct Cell(pub u32, pub u32, pub u32);
-
-#[derive(Serialize, Deserialize)]
-pub struct World {
-    pub x: u32,
-    pub y: u32,
-    pub cells: [Cell; 9],
-}
+use cellular_automaton::{
+    World,
+    Cell,
+};
 
 pub fn init_world9(cells: [Cell; 9]) -> World {
     const X: u32 = 3;
@@ -61,6 +54,7 @@ pub fn random_world() -> JsValue {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use cellular_automaton::*;
 
     fn matches_value(v: u32) {
         match v {
