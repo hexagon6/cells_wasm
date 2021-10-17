@@ -8,18 +8,18 @@ use cellular_automaton::{
     Cell,
 };
 
-pub fn init_world9(cells: [Cell; 9]) -> World {
+pub fn init_world81(cells: [Cell; 81]) -> World {
     const X: u32 = 3;
     const Y: u32 = 3;
     World {
         x: X,
         y: Y,
-        cells: cells,
+        cells: cells.to_vec(),
     }
 }
 
-pub fn init_random_cells9() -> [Cell; 3 * 3] {
-    const LEN: u32 = 3;
+pub fn init_random_cells81() -> [Cell; 9 * 9] {
+    const LEN: u32 = 9;
     const SIZE: u32 = LEN.pow(2) as u32;
     let mut index = 0;
     let cells: [Cell; SIZE as usize] = [0; SIZE as usize].map(|_| {
@@ -41,11 +41,11 @@ fn get_random_buf() -> Result<[u8; 32], getrandom::Error> {
 
 #[wasm_bindgen]
 pub fn random_world() -> JsValue {
-    let cells: [Cell; 9] = init_random_cells9();
+    let cells: [Cell; 81] = init_random_cells81();
     let world = World {
-        x: 3,
-        y: 3,
-        cells: cells,
+        x: 9,
+        y: 9,
+        cells: cells.to_vec(),
     };
 
     JsValue::from_serde(&world).unwrap()
@@ -86,11 +86,11 @@ mod tests {
     }
     #[test]
     fn init_random_world() {
-        let cells: [Cell; 9] = init_random_cells9();
-        let world: World = init_world9(cells);
+        let cells: [Cell; 9*9] = init_random_cells81();
+        let world: World = init_world81(cells);
         assert_eq!(world.x, 3);
         assert_eq!(world.y, 3);
-        assert_eq!(world.cells.len(), 9);
+        assert_eq!(world.cells.len(), 81);
         assert_eq!(world.cells[0].0, 0);
         assert_eq!(world.cells[0].1, 0);
         let v0 = world.cells[0].2;
@@ -99,13 +99,13 @@ mod tests {
         assert_eq!(world.cells[1].1, 1);
         let v1 = world.cells[1].2;
         matches_value(v1);
-        assert_eq!(world.cells[3].0, 1);
-        assert_eq!(world.cells[3].1, 0);
-        assert_eq!(world.cells[4].0, 1);
-        assert_eq!(world.cells[4].1, 1);
-        assert_eq!(world.cells[8].0, 2);
-        assert_eq!(world.cells[8].1, 2);
-        let v8 = world.cells[8].2;
-        matches_value(v8);
+        assert_eq!(world.cells[9].0, 1);
+        assert_eq!(world.cells[9].1, 0);
+        assert_eq!(world.cells[10].0, 1);
+        assert_eq!(world.cells[10].1, 1);
+        assert_eq!(world.cells[18].0, 2);
+        assert_eq!(world.cells[18].1, 0);
+        let v18 = world.cells[18].2;
+        matches_value(v18);
     }
 }

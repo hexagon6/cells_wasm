@@ -4,7 +4,7 @@ use wasm_bindgen::prelude::*;
 pub struct World {
   pub x: u32,
   pub y: u32,
-  pub cells: [Cell; 9],
+  pub cells: Vec<Cell>,
 }
 
 // x: Position, y: Position, v: State
