@@ -1,6 +1,6 @@
 {
   "name": "cells_wasm",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "files": [
     "cells_wasm_bg.wasm",
     "cells_wasm.js",
