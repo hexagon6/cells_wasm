@@ -5,6 +5,11 @@
 */
 export function random_world(): any;
 /**
+* @param {any} world
+* @returns {any}
+*/
+export function run_game_of_life(world: any): any;
+/**
 */
 export class Cell {
   free(): void;
@@ -31,6 +36,9 @@ export interface InitOutput {
   readonly __wbg_get_cell_2: (a: number) => number;
   readonly __wbg_set_cell_2: (a: number, b: number) => void;
   readonly random_world: () => number;
+  readonly run_game_of_life: (a: number) => number;
+  readonly __wbindgen_malloc: (a: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
 }
 
