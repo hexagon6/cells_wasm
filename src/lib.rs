@@ -3,10 +3,27 @@ use getrandom::getrandom;
 use wasm_bindgen::prelude::*;
 mod cellular_automaton;
 
-use cellular_automaton::{
-    World,
-    Cell,
-};
+use cellular_automaton::{apply_algorithm, game_of_life, Cell, World};
+
+pub fn init_world9(cells: [Cell; 9]) -> World {
+    const X: u32 = 3;
+    const Y: u32 = 3;
+    World {
+        x: X,
+        y: Y,
+        cells: cells.to_vec(),
+    }
+}
+
+pub fn init_world16(cells: [Cell; 16]) -> World {
+    const X: u32 = 4;
+    const Y: u32 = 4;
+    World {
+        x: X,
+        y: Y,
+        cells: cells.to_vec(),
+    }
+}
 
 pub fn init_world81(cells: [Cell; 81]) -> World {
     const X: u32 = 3;
@@ -20,6 +37,36 @@ pub fn init_world81(cells: [Cell; 81]) -> World {
 
 pub fn init_random_cells81() -> [Cell; 9 * 9] {
     const LEN: u32 = 9;
+    const SIZE: u32 = LEN.pow(2) as u32;
+    let mut index = 0;
+    let cells: [Cell; SIZE as usize] = [0; SIZE as usize].map(|_| {
+        let x = index / LEN;
+        let y = index % LEN;
+        let r = get_random_buf().unwrap();
+        let v: u32 = (r[0] % 2).into();
+        index = index + 1;
+        Cell(x, y, v)
+    });
+    cells
+}
+
+pub fn init_random_cells16() -> [Cell; 4 * 4] {
+    const LEN: u32 = 4;
+    const SIZE: u32 = LEN.pow(2) as u32;
+    let mut index = 0;
+    let cells: [Cell; SIZE as usize] = [0; SIZE as usize].map(|_| {
+        let x = index / LEN;
+        let y = index % LEN;
+        let r = get_random_buf().unwrap();
+        let v: u32 = (r[0] % 2).into();
+        index = index + 1;
+        Cell(x, y, v)
+    });
+    cells
+}
+
+pub fn init_random_cells64() -> [Cell; 8 * 8] {
+    const LEN: u32 = 8;
     const SIZE: u32 = LEN.pow(2) as u32;
     let mut index = 0;
     let cells: [Cell; SIZE as usize] = [0; SIZE as usize].map(|_| {
