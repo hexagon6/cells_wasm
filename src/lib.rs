@@ -88,10 +88,11 @@ fn get_random_buf() -> Result<[u8; 32], getrandom::Error> {
 
 #[wasm_bindgen]
 pub fn random_world() -> JsValue {
-    let cells: [Cell; 81] = init_random_cells81();
+    const N: usize = 8;
+    let cells: [Cell; N * N] = init_random_cells64();
     let world = World {
-        x: 9,
-        y: 9,
+        x: N as u32,
+        y: N as u32,
         cells: cells.to_vec(),
     };
 
