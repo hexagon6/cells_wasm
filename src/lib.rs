@@ -133,7 +133,7 @@ mod tests {
     }
     #[test]
     fn init_random_world() {
-        let cells: [Cell; 9*9] = init_random_cells81();
+        let cells: [Cell; 9 * 9] = init_random_cells81();
         let world: World = init_world81(cells);
         assert_eq!(world.x, 3);
         assert_eq!(world.y, 3);
