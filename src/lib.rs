@@ -99,6 +99,13 @@ pub fn random_world() -> JsValue {
     JsValue::from_serde(&world).unwrap()
 }
 
+#[wasm_bindgen]
+pub fn run_game_of_life(world: &JsValue) -> JsValue {
+    let w: World = world.clone().into_serde().unwrap();
+    let next = apply_algorithm(w, game_of_life);
+    JsValue::from_serde(&next).unwrap()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
