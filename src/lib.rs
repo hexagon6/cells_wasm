@@ -35,6 +35,29 @@ pub fn init_world81(cells: [Cell; 81]) -> World {
     }
 }
 
+pub fn init_custom_world(x: u32, y: u32, cells: Vec<Cell>) -> World {
+    World { x, y, cells: cells }
+}
+
+pub fn init_random_cells_x_y(x: u32, y: u32) -> Vec<Cell> {
+    let size: u32 = x * y;
+    let states: u8 = 2;
+    let mut index = 0;
+    let vec: Vec<u32> = (0..size).collect();
+    let cells: Vec<_> = vec
+        .iter()
+        .map(|_| {
+            let _x = index % x;
+            let _y = index / x;
+            let r = get_random_buf().unwrap();
+            let v: u32 = (r[0] % states).into();
+            index = index + 1;
+            Cell(_x, _y, v)
+        })
+        .collect::<Vec<_>>();
+    cells
+}
+
 pub fn init_random_cells81() -> [Cell; 9 * 9] {
     const LEN: u32 = 9;
     const SIZE: u32 = LEN.pow(2) as u32;
