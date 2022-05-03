@@ -371,7 +371,6 @@ mod tests {
         // }
     }
 
-
     #[test]
     fn all_dead() {
         let cells = [Cell(0, 0, 0)].to_vec();
