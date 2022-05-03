@@ -109,10 +109,12 @@ function getInt32Memory0() {
     return cachegetInt32Memory0;
 }
 /**
+* @param {number} x
+* @param {number} y
 * @returns {any}
 */
-export function random_world() {
-    var ret = wasm.random_world();
+export function random_world(x, y) {
+    var ret = wasm.random_world(x, y);
     return takeObject(ret);
 }
 

@@ -1,9 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {number} x
+* @param {number} y
 * @returns {any}
 */
-export function random_world(): any;
+export function random_world(x: number, y: number): any;
 /**
 * @param {any} world
 * @returns {any}
@@ -35,7 +37,7 @@ export interface InitOutput {
   readonly __wbg_set_cell_1: (a: number, b: number) => void;
   readonly __wbg_get_cell_2: (a: number) => number;
   readonly __wbg_set_cell_2: (a: number, b: number) => void;
-  readonly random_world: () => number;
+  readonly random_world: (a: number, b: number) => number;
   readonly run_game_of_life: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
