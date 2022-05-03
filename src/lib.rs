@@ -110,14 +110,9 @@ fn get_random_buf() -> Result<[u8; 32], getrandom::Error> {
 }
 
 #[wasm_bindgen]
-pub fn random_world() -> JsValue {
-    const N: usize = 8;
-    let cells: [Cell; N * N] = init_random_cells64();
-    let world = World {
-        x: N as u32,
-        y: N as u32,
-        cells: cells.to_vec(),
-    };
+pub fn random_world(x: u32, y: u32) -> JsValue {
+    let cells: Vec<Cell> = init_random_cells_x_y(x, y);
+    let world = init_custom_world(x, y, cells);
 
     JsValue::from_serde(&world).unwrap()
 }
