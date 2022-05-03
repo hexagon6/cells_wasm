@@ -188,6 +188,39 @@ mod tests {
     }
 
     #[test]
+    fn init_custom_world_test() {
+        const X: u32 = 3;
+        const Y: u32 = 2;
+        const SIZE: u32 = X * Y;
+        for index in 0..SIZE {
+            let x = index % X;
+            let y = index / X;
+            println!("{}: {}x{}", index, x, y);
+        }
+        let cells: Vec<Cell> = init_random_cells_x_y(X, Y);
+        let world: World = init_custom_world(X, Y, cells);
+        assert_eq!(world.x, X);
+        assert_eq!(world.y, Y);
+        assert_eq!(world.cells.len(), SIZE as usize);
+        let count_x0: usize = world
+            .cells
+            .iter()
+            .cloned()
+            .filter(|&c| c.0 == 0)
+            .collect::<Vec<_>>()
+            .len();
+        assert_eq!(Y as usize, count_x0);
+        let count_y0: usize = world
+            .cells
+            .iter()
+            .cloned()
+            .filter(|&c| c.1 == 0)
+            .collect::<Vec<_>>()
+            .len();
+        assert_eq!(X as usize, count_y0);
+    }
+
+    #[test]
     fn apply_naive_algorithm() {
         let cells = [
             Cell(0, 0, 0),
